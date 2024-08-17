@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * Author : Martin Lavalais
+ * Website : kms.atlas-eternal.com
+ * Description : Stockage for critical information
+ */
+
+namespace atlas\kms;
+
+class conn
+{
+    public static $db_host = "";
+    public static $db_user = "";
+    public static $db_pass = "";
+    public static $db_name = "";
+    public static $db_port = 3306;
+
+    public static $smtp_host = "";
+    public static $smtp_user = "";
+    public static $smtp_pass = "";
+    public static $smtp_port = 465;
+}

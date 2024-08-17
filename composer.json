@@ -1,0 +1,21 @@
+{
+    "name": "martin/key-manager",
+    "description": "A Key Manager Service for kms.atlas-eternal.com",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "atlas\\kms\\": "private/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Martin",
+            "email": "martin.lavalais@atlas-eternal.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "phpmailer/phpmailer": "dev-master"
+    }
+}
