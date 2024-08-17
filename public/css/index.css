@@ -1,0 +1,141 @@
+@font-face {
+    font-family: NeonLedLight;
+    src: url("/assets/fonts/neon-led-light.otf");
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.title-br {
+    display: none;
+}
+
+.section-title {
+    background-image: url("/img/cybersecu-background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 1000px;
+}
+
+.container-button {
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 95%;
+    transform: translate(-50%, -50%); 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-title {
+    width:100%;
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%, -50%); 
+    color : #02c2fc;
+    font-family: NeonLedLight;
+    font-size: 100px;
+    text-align: center;
+}
+
+.title {
+    width:auto;
+    display:inline-block;
+    overflow:hidden;
+    white-space:nowrap;
+}
+  
+.title:first-of-type {
+    animation: showup 7s infinite;
+}
+  
+.title:last-of-type {
+    width:0px;
+    animation: reveal 7s infinite;
+}
+  
+.title:last-of-type span {
+    margin-left:-355px;
+    animation: slidein 7s infinite;
+}
+  
+@keyframes showup {
+    0% {opacity:0;}
+    20% {opacity:1;}
+    80% {opacity:1;}
+    100% {opacity:0;}
+}
+  
+@keyframes slidein {
+    0% { margin-left:-800px; }
+    20% { margin-left:-800px; }
+    35% { margin-left:0px; }
+    100% { margin-left:0px; }
+}
+  
+@keyframes reveal {
+    0% {opacity:0;width:0px;}
+    20% {opacity:1;width:0px;}
+    35% {width:1000px;}
+    80% {opacity:1;}
+    100% {opacity:0;width:1000px;}
+}
+
+@media screen and (max-width: 600px) and (min-width: 450px) {
+    .section-title {
+        background-size:1800px;
+    }
+
+    .title-br {
+        display: block;
+    }
+
+    .container-title {
+        font-size: 60px;
+    }
+
+    .title span {
+        font-size:40px;
+        margin:0px;
+    }
+
+    @keyframes reveal {
+        0% {opacity:0;width:0px;}
+        20% {opacity:1;width:0px;}
+        35% {width:auto;}
+        80% {opacity:1;}
+        100% {opacity:0;width:auto;}
+    }
+}
+
+@media screen and (max-width: 450px){
+    .section-title {
+        background-size:1800px;
+    }
+
+    .title-br {
+        display: block;
+    }
+
+    .container-title {
+        font-size: 50px;
+    }
+
+    .title span {
+        font-size:30px;
+        margin:0px;
+    }
+
+    @keyframes reveal {
+        0% {opacity:0;width:0px;}
+        20% {opacity:1;width:0px;}
+        35% {width:auto;}
+        80% {opacity:1;}
+        100% {opacity:0;width:auto;}
+    }
+}

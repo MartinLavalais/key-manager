@@ -1,0 +1,79 @@
+@font-face {
+    font-family: NeonLedLight;
+    src: url("/assets/fonts/neon-led-light.otf");
+}
+
+/* Global Styles */
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ 
+:root {
+    --font: NeonLedLight;
+    --size-pri: 1px;
+    --size-sec: 100px;
+    --main-clr: #02c2fc;
+    --white: #fff;
+}
+
+.container-button {
+    display: grid;
+    grid-template-columns: repeat(1 1fr);
+    place-items: center;
+    height: 500px;
+}
+ 
+.register-button {
+    width: 250px;
+    height: 100px;
+    background: none;
+    border: none;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.register-button::before {
+    content: attr(data-download);
+    display: inline-block;
+    position: absolute;
+    inset: 12px 0;
+    font-family: var(--font);
+    text-transform: uppercase;
+    font-size: 40px;
+    letter-spacing: 2px;
+    font-weight: 900;
+    color:var(--main-clr);
+    transition: all 0.5s ease;
+}
+
+.register-button::after {
+    display: inline-block;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font: var(--fa-font-solid);
+    content: "\f25d";
+    color: var(--white);
+    transition: 500ms ease;
+    position: relative;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    font-size: 3.6em;
+    transform: translate(-500%, 0);
+    transition: all 0.5s ease;
+    color: var(--main-clr);
+}
+
+.register-button:hover::before {
+    opacity: 0; 
+    transform: translate(100%, 0);
+}
+
+.register-button:hover::after{
+    opacity: 1; 
+    transform: none;
+}
