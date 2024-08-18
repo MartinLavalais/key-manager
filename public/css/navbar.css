@@ -1,12 +1,16 @@
 .navbar {
     display: flex;
     flex-direction: row;
-    background-color: #020203;
+    background-color: #000000;
     align-items: center;
     justify-content: space-between;
     padding-left:20px;
     padding-right:20px;
     height:150px;
+}
+
+.offcanvas {
+    background-color: #000000;
 }
 
 .navbar-logo {

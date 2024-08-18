@@ -16,7 +16,7 @@
     background-image: url("/img/cybersecu-background.jpg");
     background-position: center;
     background-repeat: no-repeat;
-    height: 1000px;
+    height: 1500px;
 }
 
 .container-button {
@@ -37,6 +37,7 @@
     left: 50%;
     top: 20%;
     transform: translate(-50%, -50%); 
+    /*color : #02c2fc;*/
     color : #02c2fc;
     font-family: NeonLedLight;
     font-size: 100px;
@@ -89,6 +90,7 @@
 @media screen and (max-width: 600px) and (min-width: 450px) {
     .section-title {
         background-size:1800px;
+        height:1000px;
     }
 
     .title-br {
@@ -116,6 +118,7 @@
 @media screen and (max-width: 450px){
     .section-title {
         background-size:1800px;
+        height:1000px;
     }
 
     .title-br {
