@@ -15,20 +15,27 @@
     <main>
         <div class="form-register">
             <div class="line">
-                <input class="input medium-input" type="text" placeholder="username">
+                <input class="input medium-input" type="text" id="register-username" placeholder="username">
             </div>
             <div class="line">
-                <input class="input small-input" type="text" placeholder="email">
-                <input class="input small-input" type="text" placeholder="phone">
+                <input class="input small-input" type="text" id="register-email" placeholder="email">
+                <input class="input small-input" type="text" id="register-phone" placeholder="phone">
             </div>
             <div class="line">
-                <input class="input medium-input" type="text" placeholder="Invitation code">
+                <input class="input medium-input" type="text" id="register-code" placeholder="Invitation code">
             </div>
             <div class="line">
-                <textarea class="input big-input" placeholder="Public Key"></textarea>
+                <textarea class="input big-input" id="register-key" placeholder="Public Key"></textarea>
             </div>
             <div class="line">
-                <button class="confirm">Send</button>
+                <button class="confirm" id="confirm-button">
+                    <span id="confirm-text">Send</span>
+                    <span class="confirm-icon" id="confirm-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                        </svg>
+                    </span>
+                </button>
             </div>
         </div>
     </main>
