@@ -6,10 +6,8 @@
 
 var registerTextHTML = null;
 var registerIconHTML = null;
+var buttonRegisterHTML = null;
 
-/**
- * Enable the register button
- */
 var registerButtonEnabled = false;
 
 /**
@@ -17,6 +15,7 @@ var registerButtonEnabled = false;
  */
 function initRegister()
 {
+    buttonRegisterHTML = document.getElementById("confirm-button");
     registerTextHTML = document.getElementById("confirm-text");
     registerIconHTML = document.getElementById("confirm-icon");
     document.getElementById("confirm-button").addEventListener("click", registerButtonClickEvent);
@@ -24,7 +23,7 @@ function initRegister()
     for(let i = 0; i < inputsHTML.length; i++)
     {
         let inputHTML = inputsHTML[i];
-        inputHTML.addEventListener("change", inputChangeEvent);
+        inputHTML.addEventListener("keyup", inputChangeEvent);
     }
 }
 
@@ -33,8 +32,6 @@ function initRegister()
  */
 function inputChangeEvent()
 {
-    const buttonRegisterHTML = document.getElementById("confirm-button");
-
     let inputsFull = true;
     const inputsHTML = document.getElementsByClassName("input");
     for(let i = 0; i < inputsHTML.length; i++)
@@ -46,6 +43,8 @@ function inputChangeEvent()
 
     if (inputsFull)
     {
+        registerTextHTML.innerHTML = "SEND";
+        registerIconHTML.innerHTML = "";
         console.log("[INFO] Condition for register are complete !")
         let color = "#02c2fc";
         registerButtonEnabled = true;
@@ -54,9 +53,11 @@ function inputChangeEvent()
     }
     else
     {
-        console.log("[INFO] Condition for register are not complete !")
+        registerTextHTML.innerHTML = "";
+        registerIconHTML.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" class=\"bi bi-x\" viewBox=\"0 0 16 16\"><path d=\"M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708\"/></svg>";
+        console.log("[INFO] Condition for register are not complete !");
         let color = "#fc0228";
-        registerButtonEnabled = true;
+        registerButtonEnabled = false;
         buttonRegisterHTML.style.borderColor = color;
         buttonRegisterHTML.style.color = color;
     }
@@ -80,12 +81,9 @@ async function registerButtonClickEvent()
             "public_key": key,
             "code": code
         });
-        /*
+        
         const json = await fetch("/api/user", {method: "POST", body: body});
         const response = await json.json();
-        */
-        await new Promise(r => setTimeout(r, 2000));
-        let response = {"status":"ok","result":"This is a test"};
 
         if (response.status === "ok")
         {
@@ -94,7 +92,10 @@ async function registerButtonClickEvent()
         }
         else
         {
-            alert(response.result);
+            registerIconHTML.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" class=\"bi bi-x\" viewBox=\"0 0 16 16\"><path d=\"M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708\"/></svg>";
+            let color = "#fc0228";
+            buttonRegisterHTML.style.borderColor = color;
+            buttonRegisterHTML.style.color = color;
         }
     }
     else
