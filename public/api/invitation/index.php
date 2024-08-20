@@ -9,7 +9,7 @@
 use atlas\kms\class\API;
 use atlas\kms\class\Invitation;
 
-$allowedMethods = ["GET", "POST", "PUT", "DELETE"];
+$allowedMethods = ["POST"];
 $currentMethod = $_SERVER["REQUEST_METHOD"];
 $neededValues = [
     "POST" => ["username", "for"]

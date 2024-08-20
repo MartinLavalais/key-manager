@@ -9,7 +9,7 @@
 use atlas\kms\class\API;
 use atlas\kms\class\Key;
 
-$allowedMethods = ["GET", "POST", "PUT", "DELETE"];
+$allowedMethods = ["GET"];
 $currentMethod = $_SERVER["REQUEST_METHOD"];
 $neededValues = [
     "GET" => ["username", "reference_key"]
