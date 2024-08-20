@@ -46,11 +46,11 @@ class Key
     {
         $referenceKey = User::decrypt($username, $referenceKeyCrypted);
         if (!$referenceKey)
-            throw new Exception("The username is invalid.");
+            throw new Exception("The username is invalid.", 400);
         $id = User::getId($username);
         $result = self::get($id, $referenceKey);
         if (!$result)
-            throw new Exception("The reference key is invalid.");
+            throw new Exception("The reference key is invalid.", 400);
         return User::encrypt($username, $result->key);
     }
 
@@ -64,7 +64,7 @@ class Key
     {
         $key = User::decrypt($username, $keyCrypted);
         if (!$key)
-            throw new Exception("The username is invalid.");
+            throw new Exception("The username is invalid.", 400);
         $id = User::getId($username);
         $referenceKey = null;
         do
@@ -82,7 +82,7 @@ class Key
         $params = [":key"=>$key, ":reference_key"=>$referenceKey, ":update_date"=>$date, ":user_id"=>$id];
         $result = DB::makeTransaction($command, $params);
         if (!$result)
-            throw new Exception("DB Error");
+            throw new Exception("DB Error", 500);
         return User::encrypt($username, $referenceKey);
     }
 
@@ -97,9 +97,9 @@ class Key
     {
         $referenceKey = User::decrypt($username, $referenceKeyCrypted);
         if (!$referenceKey)
-            throw new Exception("The username is invalid.");
+            throw new Exception("The username is invalid.", 400);
         if (!Key::getStatus($username, $referenceKeyCrypted))
-            throw new Exception("The reference key is invalid.");
+            throw new Exception("The reference key is invalid.", 400);
         $newKey = User::decrypt($username, $newKeyCrypted);
         $id = User::getId($username);
         $date = date("Y-m-d");
@@ -118,9 +118,9 @@ class Key
     {
         $referenceKey = User::decrypt($username, $referenceKeyCrypted);
         if (!$referenceKeyCrypted)
-            throw new Exception("The username is invalid.");
+            throw new Exception("The username is invalid.", 400);
         if (!Key::getStatus($username, $referenceKeyCrypted))
-            throw new Exception("The reference key is invalid.");
+            throw new Exception("The reference key is invalid.", 400);
         $id = User::getId($username);
         $command = "DELETE FROM keys WHERE `user_id` = :user_id AND `reference_key` = :reference_key";
         $params = [":user_id" => $id, ":reference_key" => $referenceKey];
@@ -137,11 +137,11 @@ class Key
     {
         $referenceKey = User::decrypt($username, $referenceKeyCrypted);
         if (!$referenceKey)
-            throw new Exception("The username is invalid.");
+            throw new Exception("The username is invalid.", 400);
         $id = User::getId($username);
         $key = self::get($id, $referenceKey);
         if (!$key)
-            throw new Exception("The reference key is invalid.");
+            throw new Exception("The reference key is invalid.", 400);
         return $key->update_date;
     }
 }

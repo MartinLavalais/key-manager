@@ -55,11 +55,11 @@ class Invitation
     public static function create(string $username, string $for)
     {
         if(!User::isAdmin($username))
-            throw new Exception("You need to be an administrator to create invitations.");
+            throw new Exception("You need to be an administrator to create invitations.", 403);
         $id = User::getId($username);
         $email = User::decrypt($username, $for);
         if($email === null || $email === "")
-            throw new Exception("An email is necessary to create invitations.");
+            throw new Exception("An email is necessary to create invitations.", 400);
         $code = md5(uniqid());
         $command = "INSERT INTO invitations(`code`, `by`, `for`) VALUES (:code, :by, :for);";
         $params = [":code"=>$code, ":by"=>$id, ":for"=>$email];

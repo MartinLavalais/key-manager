@@ -28,7 +28,9 @@
             </div>
         </div>
     </main>
-    <?php include_once "./parts/footer.html" ?>
+    <div class="fixed-bottom">
+        <?php include_once "./parts/footer.html" ?>
+    </div>
     <script src="/js/copyright.js"></script>
     <script src="/assets/bootstrap.js"></script>
 </body>

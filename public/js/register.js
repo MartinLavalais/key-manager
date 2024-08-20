@@ -69,11 +69,11 @@ async function registerButtonClickEvent()
     {
         registerTextHTML.innerHTML = "";
         registerIconHTML.innerHTML = "<div class=\"spinner-border text-info\" role=\"status\"><span class=\"visually-hidden\">Loading...</span></div>";
-        let username = document.getElementById("register-username");
-        let email = document.getElementById("register-email");
-        let phone = document.getElementById("register-phone");
-        let code = document.getElementById("register-code");
-        let key = document.getElementById("register-key");
+        let username = document.getElementById("register-username").value;
+        let email = document.getElementById("register-email").value;
+        let phone = document.getElementById("register-phone").value;
+        let code = document.getElementById("register-code").value;
+        let key = document.getElementById("register-key").value;
         const body = JSON.stringify({
             "username": username,
             "email": email,
@@ -82,7 +82,7 @@ async function registerButtonClickEvent()
             "code": code
         });
         
-        const json = await fetch("/api/user", {method: "POST", body: body});
+        const json = await fetch("/api/user/", {method: "POST", body: body});
         const response = await json.json();
 
         if (response.status === "ok")
@@ -96,6 +96,7 @@ async function registerButtonClickEvent()
             let color = "#fc0228";
             buttonRegisterHTML.style.borderColor = color;
             buttonRegisterHTML.style.color = color;
+            alert(response.result)
         }
     }
     else

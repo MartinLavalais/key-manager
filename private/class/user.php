@@ -75,27 +75,29 @@ class User
     public static function create(string $username, string $email, string $phone, string $public_key, string $code): bool
     {
         if (Invitation::valid($email, $code) === false)
-            throw new Exception("The code is invalid, please contact the person who provid you this code.");
+            throw new Exception("The code is invalid, please contact the person who provid you this code.", 400);
         if ($username === null || $username === "")
-            throw new Exception("The username is missing.");
+            throw new Exception("The username is missing.", 400);
         if (strlen($username) > 100)
-            throw new Exception("The username is too long.");
+            throw new Exception("The username is too long.", 400);
         if (strlen($username) < 2)
-            throw new Exception("The username is too short.");
+            throw new Exception("The username is too short.", 400);
         if (User::usernameAvailable($username) === true)
-            throw new Exception("The username is already used.");
+            throw new Exception("The username is already used.", 400);
         if ($email === null || $email === "")
-            throw new Exception("The email is missing.");
+            throw new Exception("The email is missing.", 400);
         if (strlen($email) > 255)
-            throw new Exception("The email is too long.");
+            throw new Exception("The email is too long.", 400);
         if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-            throw new Exception("The email is invalid.");
+            throw new Exception("The email is invalid.", 400);
         if (strlen($phone) > 20)
-            throw new Exception("The phone number is too long.");
+            throw new Exception("The phone number is too long.", 400);
         if ($phone === null || $phone === "")
-            throw new Exception("The phone number is missing.");
+            throw new Exception("The phone number is missing.", 400);
         if ($public_key === null || $public_key === "")
-            throw new Exception("The public key is missing");
+            throw new Exception("The public key is missing", 400);
+
+        $public_key = str_replace("&#10;", "\n", $public_key);
 
         $commandInsert = "INSERT INTO users (`username`, `email`, `phone`, `public_key`) VALUES (:username, :email, :phone, :public_key)";
         $commandDelete = "DELETE FROM invitations WHERE `code` = :code AND `for` = :for";
@@ -135,7 +137,7 @@ class User
     {
         $user = self::get($username);
         if (!$user)
-            throw new Exception("The username is invalid");
+            throw new Exception("The username is invalid.", 400);
 
         $keyFileName = $user->public_key;
         $key = file_get_contents(__DIR__ . "/../keys/" . $keyFileName);
@@ -156,7 +158,7 @@ class User
     {
         $user = self::get($username);
         if (!$user)
-            throw new Exception("The username is invalid");
+            throw new Exception("The username is invalid.", 400);
 
         $keyFileName = $user->public_key;
         $key = file_get_contents(__DIR__ . "/../keys/" . $keyFileName);
